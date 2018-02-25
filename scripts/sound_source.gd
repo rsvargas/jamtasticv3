@@ -4,6 +4,7 @@ onready var button = get_node("interact_button")
 onready var audio = get_node("audio")
 onready var sprite_on = get_node("Sprite2")
 onready var timer = get_node("Timer")
+onready var global = get_node("/root/global")
 
 
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
         
 func _input(event):
     if Input.is_action_just_pressed('interact') and button.visible:
+        global.mark_stop()
         sprite_on.visible = false
         audio.playing = false
         timer.start()
@@ -28,4 +30,4 @@ func _on_Player_cannot_interact():
 
 
 func _on_Timer_timeout():
-    get_node("/root/global").show_stats()
+    global.show_stats()

@@ -7,6 +7,5 @@ func show_alert(which):
     $container/cuidado.visible = (which == 2)
 
 func _process(delta):
-    var start = global.levels[global.current].start_stamp
-    var ticks = OS.get_ticks_msec() - start
+    var ticks = global.get_level_time()
     $timer.text = global.string_from_time(ticks)

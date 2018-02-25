@@ -42,7 +42,6 @@ func goto_scene(path):
     call_deferred("_deferred_goto_scene",path)
 
 func show_stats():
-    levels[current].time = OS.get_ticks_msec() - levels[current].start_stamp
     is_level_scene = false
     goto_scene("res://scenes/stats_screen.tscn")
     
@@ -89,6 +88,15 @@ func string_from_time(ticks):
     
 func spotted_player():
     levels[current].was_seen = true
+    
+func mark_stop():
+    levels[current].time = OS.get_ticks_msec() - levels[current].start_stamp
+    
+func get_level_time():
+    if levels[current].time == 0:
+        return OS.get_ticks_msec() - levels[current].start_stamp
+    return levels[current].time
+    
 
 func get_score():
     return levels[current]
